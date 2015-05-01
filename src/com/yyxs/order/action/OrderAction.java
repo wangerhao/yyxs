@@ -35,14 +35,11 @@ public class OrderAction {
 		String goodId = request.getParameter("goodId");
 
 		if (StringUtil.isNullOrBlank(goodId) || !StringUtil.isNumber(goodId)) {
-			goodId = "1";
+			goodId = "2";
 		}
 
 		GoodsConstant good = service.getGoodById(Integer.parseInt(goodId));
 		
-		if(good == null){
-			good = service.getGoodById(3);
-		}
 		request.setAttribute("good", good);
 	}
 	/**
@@ -66,7 +63,12 @@ public class OrderAction {
 	 */
 	@At
 	@Ok("raw")
-	public String orderAdd(@Param("goodId") String goodId,@Param("orderPhone") String mobilePhoneNumber, @Param("orderConsignee") String consignee, @Param("orderAddres") String detailedAddress,@Param("goodsTotalPrice")double goodsTotalPrice, @Param("orderNum") int goodsStatus){
+	public String orderAdd(@Param("goodId") String goodId,@Param("orderPhone") String mobilePhoneNumber,
+			@Param("orderConsignee") String consignee, @Param("orderAddres") String detailedAddress,
+			@Param("goodsTotalPrice")double goodsTotalPrice,
+			@Param("orderNum") int goodsStatus,
+			@Param("goodsType") int goodsType,
+			@Param("goodsColor") int goodsColor){
 		double money = 0.00;
 		try {
 //			double money = GoodsOrderServices.getInstace().beiNaiLiMoney(goodsStatus);
@@ -74,11 +76,18 @@ public class OrderAction {
 				java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");  
 				money =Double.parseDouble(df.format(goodsTotalPrice));
 			}
-			GoodsOrderDB.getInstance().beiNaiLiGoodsOrderAdd(goodId,mobilePhoneNumber, consignee, detailedAddress, money, goodsStatus);
+			GoodsOrderDB.getInstance().beiNaiLiGoodsOrderAdd(goodId,mobilePhoneNumber, consignee, detailedAddress, money, goodsStatus,goodsType,goodsColor);
 			return "success";
 		} catch (Throwable e) {
 			GoodsOrderUtil.log(e.getMessage(), e);
 			return "fail";
 		}
 	}
+	
+	/**
+	 * 英国卫裤订单展示
+	 */
+	@At("/yingGuoWeiKu")
+	@Ok("jsp:/jsp/goodsorder/yingGuoWeiKu.jsp")
+	public void yingGuoWeiKuOrderShow(){}
 }

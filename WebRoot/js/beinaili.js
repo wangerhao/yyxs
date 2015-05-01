@@ -98,6 +98,7 @@ $(function(){
 	
 	/** 表单验证 */
 	$("#orderSubmitBtn").click(function(){
+		
 		var mobilePhoneNumber = $.yyxs.order.mobilePhoneNumberVail();
 		if(mobilePhoneNumber != true){
 			$("#mobilePhoneNumber").parent().attr("class","input-group has-error");
@@ -118,6 +119,9 @@ $(function(){
 			$("#detailedAddress").focus();
 			return false;
 		}
+			
+		$("#orderSubmitBtn").attr("disabled","disabled")
+		
 		$.ajax({
 			url:"orderAdd.html",
 			type:"post",
@@ -141,4 +145,49 @@ $(function(){
 	function show(){
 		location.reload();
 	}
+	/**
+	 * 选择颜色按钮事件
+	 */
+	$("a[name='buyColor']").click(function(){
+		$(this).attr("style","background-color: #00BFFF;");
+		var id = $(this).attr("id");
+		
+		$("a[name='buyColor']").each(function(){
+			if($(this).attr("id") != id){
+				$(this).attr("style","");
+			}
+		});
+		if(id == "buyColor1"){
+			$("#goodsColor").val(1);
+		}
+		if(id == "buyColor2"){
+			$("#goodsColor").val(2);
+		}
+		if(id == "buyColor3"){
+			$("#goodsColor").val(3);
+		}
+	});
+	
+	/**
+	 * 选择尺寸按钮事件
+	 */
+	$("a[name='buyType']").click(function(){
+		$(this).attr("style","background-color: #00BFFF;");
+		var id = $(this).attr("id");
+		
+		$("a[name='buyType']").each(function(){
+			if($(this).attr("id") != id){
+				$(this).attr("style","");
+			}
+		});
+		if(id == "buyType1"){
+			$("#goodsType").val(1);
+		}
+		if(id == "buyType2"){
+			$("#goodsType").val(2);
+		}
+		if(id == "buyType3"){
+			$("#goodsType").val(3);
+		}
+	});
 });
