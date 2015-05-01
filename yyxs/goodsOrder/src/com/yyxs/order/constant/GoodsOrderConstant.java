@@ -28,6 +28,16 @@ public class GoodsOrderConstant {
 	private String orderTime;
 	private int orderStatus;
 	private GoodsConstant goods;
+	private int orderType;
+	
+	public final static int ORDERSTATUS_L = 0;
+	public final static int ORDERSTATUS_XL = 1;
+	public final static int ORDERSTATUS_XXL = 2;
+	
+	private int orderColor;
+	public final static int ORDERCOLOR_BLACK = 0;
+	public final static int ORDERCOLOR_WHITE = 1;
+	public final static int ORDERCOLOR_RED = 2;
 	
 	public final static int DAICHULI = 1;
 	public final static int DAIFAHUO = 2;
@@ -101,6 +111,18 @@ public class GoodsOrderConstant {
 	}
 	public void setGoods(GoodsConstant goods) {
 		this.goods = goods;
+	}
+	public int getOrderType() {
+		return orderType;
+	}
+	public void setOrderType(int orderType) {
+		this.orderType = orderType;
+	}
+	public int getOrderColor() {
+		return orderColor;
+	}
+	public void setOrderColor(int orderColor) {
+		this.orderColor = orderColor;
 	}
 	@Override
 	public String toString() {

@@ -44,7 +44,7 @@ public class GoodsOrderDB {
 
 	public GoodsConstant getGoodById(int id) {
 		GoodsConstant good = null;
-		String sql = "select id,good_inprice,good_name,good_outprice,good_sex,good_img from yyxs_goods where id = ?";
+		String sql = "select id,good_inprice,good_name,good_outprice,good_sex,good_color,good_type,good_img from yyxs_goods where id = ?";
 		List<Object> paramList = Arrays.asList((Object)id);
 		 try {
 			List<Map<Object, Object>> list = dbo.retrieveSQL(sql, paramList);
@@ -56,6 +56,12 @@ public class GoodsOrderDB {
 				good.setGoodName(map.get("good_name").toString());
 				good.setGoodImg(map.get("good_img").toString());
 				good.setGoodSex(Integer.valueOf(map.get("good_sex").toString()));
+				if(map.get("good_color") != null){
+					good.setGoodColor(Integer.valueOf(map.get("good_color").toString()));
+				}
+				if(map.get("good_type") != null){
+					good.setGoodType(Integer.valueOf(map.get("good_type").toString()));
+				}
 			}
 			
 		} catch (Throwable e) {
@@ -68,9 +74,9 @@ public class GoodsOrderDB {
 
 	public void beiNaiLiGoodsOrderAdd(String goodId, String mobilePhoneNumber,
 			String consignee, String detailedAddress, double money,
-			int goodsStatus) {
-		String sql = "insert into yyxs_goods_order(mobile_phone_number,consignee,detailed_address,goods_number,money,systime,good_id,order_status) values(?,?,?,?,?,?,?,?)";
-		List<Object> paramList = Arrays.asList((Object)mobilePhoneNumber, consignee, detailedAddress, goodsStatus, money, GoodsOrderUtil.currentTime(),goodId,GoodsOrderConstant.DAICHULI);
+			int goodsStatus, int goodsType, int goodsColor) {
+		String sql = "insert into yyxs_goods_order(mobile_phone_number,consignee,detailed_address,goods_number,money,systime,good_id,order_status,order_type,order_color) values(?,?,?,?,?,?,?,?,?,?)";
+		List<Object> paramList = Arrays.asList((Object)mobilePhoneNumber, consignee, detailedAddress, goodsStatus, money, GoodsOrderUtil.currentTime(),goodId,GoodsOrderConstant.DAICHULI,goodsType,goodsColor);
 		try {
 			dbo.insertData(sql, paramList);
 		} catch (Throwable e) {

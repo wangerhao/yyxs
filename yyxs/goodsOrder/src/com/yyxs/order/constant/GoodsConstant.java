@@ -19,14 +19,27 @@ public class GoodsConstant {
 	private Double goodInPrice;
 	
 	/**
-	 * 商品用途: 男用女用
+	 * 商品用途: 男用女用:0女用1男用
 	 */
 	private Integer goodSex;
+	public final static Integer GOODSEX_MAN = 1;
+	public final static Integer GOODSEX_WOMAN = 0;
+	/**
+	 * 商品图片路径
+	 */
 	private String goodImg;
-	
-	public final static Integer MAN = 1;
-	public final static Integer WOMAN = 0;
-	
+	/**
+	 * 商品类型:0无1有
+	 */
+	private Integer goodType;
+	public final static Integer GOODTYPE_NO = 1;
+	public final static Integer GOODTYPE_YES = 0;
+	/**
+	 * 商品颜色:0无1有
+	 */
+	private Integer goodColor;
+	public final static Integer GOODCOLOR_NO = 1;
+	public final static Integer GOODCOLOR_YES = 0;
 	
 	public GoodsConstant() {}
 	public GoodsConstant(String goodName, double goodOutPrice,
@@ -73,6 +86,19 @@ public class GoodsConstant {
 	}
 	public void setGoodImg(String goodImg) {
 		this.goodImg = goodImg;
+	}
+	
+	public Integer getGoodType() {
+		return goodType;
+	}
+	public void setGoodType(Integer goodType) {
+		this.goodType = goodType;
+	}
+	public Integer getGoodColor() {
+		return goodColor;
+	}
+	public void setGoodColor(Integer goodColor) {
+		this.goodColor = goodColor;
 	}
 	@Override
 	public String toString() {

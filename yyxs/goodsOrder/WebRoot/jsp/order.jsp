@@ -29,7 +29,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<center><img width="300px" height="300px" alt="${good.goodName}" src="../images/${good.goodImg}"> </center>
 	 	<br/>
 	 	<form id="orderSubmitForm" aciton="###" >
-			<div class="row" >
+	 		<c:if test="${good.goodColor == 1}">
+				<p class="text-danger">请根据需求选择合适的卫裤颜色!</p>
+		  		<div class="row">
+			 		<div class="col-md-12">
+			 			<nav>
+						  <ul class="pager">
+						    <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor1" style="background-color: #00BFFF;">黑色</a></li>
+						    <!-- <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor2" style="">红色</a></li>
+						    <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor3" style="">白色</a></li> -->
+						  </ul>
+						</nav>
+						<input type="hidden" id="goodsColor" name="goodsColor" value="0"/>
+			 		</div>
+			 	</div>
+		 	</c:if>
+		 	<c:if test="${good.goodType == 1}">
+		 	<p class="text-danger">请根据需求选择合适的卫裤尺寸!</p>
+		  		<div class="row">
+			 		<div class="col-md-12">
+			 			<nav>
+						  <ul class="pager">
+						    <li class="previous"><a href="javascript:void(0)" name="buyType" id="buyType1" style="background-color: #00BFFF;">L号</a></li>
+						    <li class="previous"><a href="javascript:void(0)" name="buyType" id="buyType2" style="">XL号</a></li>
+						    <li class="previous"><a href="javascript:void(0)" name="buyType" id="buyType3" style="">XXL号</a></li>
+						  </ul>
+						</nav>
+						<input type="hidden" id="goodsType" name="goodsType" value="0"/>
+			 		</div>
+			 	</div>
+		 	</c:if>
+		 	<p class="text-danger">请根据需求选择合适的套餐!</p>
+		 	<div class="row">
+		 		<div class="col-md-12">
+		 			<nav>
+					  <ul class="pager">
+					    <li class="previous"><a href="javascript:void(0)" id="buyASingle" style="background-color: #00BFFF;">买单个</a></li>
+					    <li class="previous"><a href="javascript:void(0)" id="buyTwo" style="">买二送一</a></li>
+					    <li class="previous"><a href="javascript:void(0)" id="buyFour" style="">买四送二</a></li>
+					  </ul>
+					</nav>
+					<input type="hidden" id="goodsStatus" name="orderNum" value="${buy_a_single_status}"/>
+					<input type="hidden" id="goodsStatus" name="goodId" value="${good.goodId}"/>
+					<input type="hidden" id="goodsTotalPrice" name="goodsTotalPrice" value="${good.goodOutPrice}"/>
+		 		</div>
+		 	</div>
+		 	<p class="text-danger">请填写手机号,收货人,收货地址!</p>
+		 	<div class="row" >
 				<div class="col-md-12">
 					<div class="input-group">
 				  <span class="input-group-addon" id="basic-addon1">手机号　</span>
@@ -57,21 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<br/>
-		 	<p class="text-danger">请根据需求选择合适的套餐!</p>
-		 	<div class="row">
-		 		<div class="col-md-12">
-		 			<nav>
-					  <ul class="pager">
-					    <li class="previous"><a href="javascript:void(0)" id="buyASingle" style="background-color: #00BFFF;">买单个</a></li>
-					    <li class="previous"><a href="javascript:void(0)" id="buyTwo" style="">买二送一</a></li>
-					    <li class="previous"><a href="javascript:void(0)" id="buyFour" style="">买四送二</a></li>
-					  </ul>
-					</nav>
-					<input type="hidden" id="goodsStatus" name="orderNum" value="${buy_a_single_status}"/>
-					<input type="hidden" id="goodsStatus" name="goodId" value="${good.goodId}"/>
-					<input type="hidden" id="goodsTotalPrice" name="goodsTotalPrice" value="${good.goodOutPrice}"/>
-		 		</div>
-		 	</div>
+		 	
 		 	<div class="row">
 				<div class="col-md-12">
 					最终支付<span id="money">￥${good.goodOutPrice}</span>元
