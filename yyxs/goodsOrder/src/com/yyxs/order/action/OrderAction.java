@@ -73,7 +73,7 @@ public class OrderAction {
 		double money = 0.00;
 		String userAddress = s_province+s_city+s_county+detailedAddress;
 		try {
-			log.info("商品编号:"+goodId+"用户手机:"+mobilePhoneNumber+"用户名称:"+consignee+"用户地址:"+userAddress+"应付金额:"+money+"订单状态:"+goodsStatus+"商品型号:"+goodsType+"商品颜色:"+goodsColor);
+			GoodsOrderUtil.log("商品编号:"+goodId+"用户手机:"+mobilePhoneNumber+"用户名称:"+consignee+"用户地址:"+userAddress+"应付金额:"+money+"订单状态:"+goodsStatus+"商品型号:"+goodsType+"商品颜色:"+goodsColor);
 //			double money = GoodsOrderServices.getInstace().beiNaiLiMoney(goodsStatus);
 			if(goodsTotalPrice > 0){
 				java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");  
