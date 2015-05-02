@@ -28,4 +28,8 @@ public class GoodsOrderUtil {
 	public static void log(Object message, Throwable t){
 		log.error(message, t);
 	}
+
+	public static void log(String string) {
+		log.info(string);
+	}
 }
