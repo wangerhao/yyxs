@@ -3,13 +3,12 @@ package com.yyxs.order.action;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.http.HttpResponse;
+import org.apache.log4j.Logger;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
-
-import sun.swing.StringUIClientPropertyKey;
 
 import com.yyxs.order.constant.GoodsConstant;
 import com.yyxs.order.db.GoodsOrderDB;
@@ -24,6 +23,7 @@ import com.yyxs.order.util.StringUtil;
 @IocBean
 @InjectName
 public class OrderAction {
+	private static Logger log = Logger.getLogger(OrderAction.class);
 	private GoodsOrderServices service = new GoodsOrderServices();
 	
 	/**
@@ -73,12 +73,15 @@ public class OrderAction {
 		double money = 0.00;
 		String userAddress = s_province+s_city+s_county+detailedAddress;
 		try {
+			log.info("商品编号:"+goodId+"用户手机:"+mobilePhoneNumber+"用户名称:"+consignee+"用户地址:"+userAddress+"应付金额:"+money+"订单状态:"+goodsStatus+"商品型号:"+goodsType+"商品颜色:"+goodsColor);
 //			double money = GoodsOrderServices.getInstace().beiNaiLiMoney(goodsStatus);
 			if(goodsTotalPrice > 0){
 				java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");  
 				money =Double.parseDouble(df.format(goodsTotalPrice));
 			}
 			GoodsOrderDB.getInstance().beiNaiLiGoodsOrderAdd(goodId,mobilePhoneNumber, consignee, userAddress, money, goodsStatus,goodsType,goodsColor);
+			
+			
 			return "success";
 		} catch (Throwable e) {
 			GoodsOrderUtil.log(e.getMessage(), e);
