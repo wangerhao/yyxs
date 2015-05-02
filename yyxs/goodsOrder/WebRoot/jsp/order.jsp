@@ -26,24 +26,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	 <c:set var="buy_four_status" value="<%=GoodsOrderConstant.BUY_FOUR_STATUS %>"></c:set>  -->
  	 <div class="container">
 	 	<center><h2>${good.goodName}</h2></center>
-	 	<center><img width="300px" height="300px" alt="${good.goodName}" src="<%=basePath%>images/${good.goodImg}"> </center>
+	 	<center><img width="300px" height="280px" style="margin-left: -5px" alt="${good.goodName}" src="../images/${good.goodImg}"> </center>
 	 	<br/>
 	 	<form id="orderSubmitForm" aciton="###" >
-	 		<c:if test="${good.goodColor == 1}">
+	 		<!-- <c:if test="${good.goodColor == 1}">
 				<p class="text-danger">请根据需求选择合适的卫裤颜色!</p>
 		  		<div class="row">
 			 		<div class="col-md-12">
 			 			<nav>
 						  <ul class="pager">
 						    <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor1" style="background-color: #00BFFF;">黑色</a></li>
-						    <!-- <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor2" style="">红色</a></li>
-						    <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor3" style="">白色</a></li> -->
+						    <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor2" style="">红色</a></li>
+						    <li class="previous"><a href="javascript:void(0)" name="buyColor" id="buyColor3" style="">白色</a></li>
 						  </ul>
 						</nav>
 						<input type="hidden" id="goodsColor" name="goodsColor" value="0"/>
 			 		</div>
 			 	</div>
-		 	</c:if>
+		 	</c:if> -->
 		 	<c:if test="${good.goodType == 1}">
 		 	<p class="text-danger">请根据需求选择合适的卫裤尺寸!</p>
 		  		<div class="row">
@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    <li class="previous"><a href="javascript:void(0)" name="buyType" id="buyType3" style="">XXL号</a></li>
 						  </ul>
 						</nav>
-						<input type="hidden" id="goodsType" name="goodsType" value="0"/>
+						<input type="hidden" id="goodsType" name="goodsType" value="1"/>
 			 		</div>
 			 	</div>
 		 	</c:if>
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 	
 		 	<div class="row">
 				<div class="col-md-12">
-					最终支付<span id="money">￥${good.goodOutPrice}</span>元
+					最终支付<span id="money">￥<a href="javascript:void(0)" style="text-decoration:line-through;">${good.goodOutPrice}</a> ${good.goodOutPrice - 50}</span> 元
 				</div>
 			</div>
 			<br/>
