@@ -65,18 +65,20 @@ public class OrderAction {
 	@Ok("raw")
 	public String orderAdd(@Param("goodId") String goodId,@Param("orderPhone") String mobilePhoneNumber,
 			@Param("orderConsignee") String consignee, @Param("orderAddres") String detailedAddress,
+			@Param("s_province") String s_province, @Param("s_city") String s_city,@Param("s_county") String s_county,
 			@Param("goodsTotalPrice")double goodsTotalPrice,
 			@Param("orderNum") int goodsStatus,
 			@Param("goodsType") int goodsType,
 			@Param("goodsColor") int goodsColor){
 		double money = 0.00;
+		String userAddress = s_province+s_city+s_county+detailedAddress;
 		try {
 //			double money = GoodsOrderServices.getInstace().beiNaiLiMoney(goodsStatus);
 			if(goodsTotalPrice > 0){
 				java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#.00");  
 				money =Double.parseDouble(df.format(goodsTotalPrice));
 			}
-			GoodsOrderDB.getInstance().beiNaiLiGoodsOrderAdd(goodId,mobilePhoneNumber, consignee, detailedAddress, money, goodsStatus,goodsType,goodsColor);
+			GoodsOrderDB.getInstance().beiNaiLiGoodsOrderAdd(goodId,mobilePhoneNumber, consignee, userAddress, money, goodsStatus,goodsType,goodsColor);
 			return "success";
 		} catch (Throwable e) {
 			GoodsOrderUtil.log(e.getMessage(), e);

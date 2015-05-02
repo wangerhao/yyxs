@@ -11,9 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>${good.goodName}商品订单</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css"></link>
-  	<link rel="stylesheet" href="/css/beinaili.css" type="text/css"></link>
-  	<link rel="stylesheet" href="/css/jquery.mobile-1.4.0.css" type="text/css"></link>
+  	<link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css" type="text/css"></link>
+  	<link rel="stylesheet" href="<%=basePath%>css/beinaili.css" type="text/css"></link>
+  	<link rel="stylesheet" href="<%=basePath%>css/jquery.mobile-1.4.0.css" type="text/css"></link>
   	<!--[if lt IE 9]>
    		<script src="/js/html5shiv.js"></script>
    		<script src="/js/respond.min.js"></script>
@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	 <c:set var="buy_four_status" value="<%=GoodsOrderConstant.BUY_FOUR_STATUS %>"></c:set>  -->
  	 <div class="container">
 	 	<center><h2>${good.goodName}</h2></center>
-	 	<center><img width="300px" height="300px" alt="${good.goodName}" src="../images/${good.goodImg}"> </center>
+	 	<center><img width="300px" height="300px" alt="${good.goodName}" src="<%=basePath%>images/${good.goodImg}"> </center>
 	 	<br/>
 	 	<form id="orderSubmitForm" aciton="###" >
 	 		<c:if test="${good.goodColor == 1}">
@@ -97,7 +97,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-md-12">
 					<div class="input-group">
 				  <span class="input-group-addon" id="basic-addon1">收货地址</span>
-				  <textarea class="form-control" aria-describedby="basic-addon1" placeholder="请输入收货地址"
+				  		<select id="s_province" name="s_province"></select>  
+					    <select id="s_city" name="s_city" ></select>  
+					    <select id="s_county" name="s_county"></select>
+					    <script type="text/javascript" src="<%=basePath%>js/area.js"></script>
+					    
+					    <script type="text/javascript">_init_area();</script>
+				  <textarea class="form-control" aria-describedby="basic-addon1" placeholder="请继续输入详细收货地址"
 				   id="detailedAddress" name="orderAddres"></textarea>
 				</div>
 				</div>
@@ -119,8 +125,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <input type="hidden" value="${buy_a_single_status}" id="buyASingleStatus"/>
 	 <input type="hidden" value="${buy_two_status}" id="buyTwoStatus"/>
 	 <input type="hidden" value="${buy_four_status}" id="buyFourStatus"/>
-    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="/js/layer/layer.min.js"></script>
-    <script type="text/javascript" src="/js/beinaili.js"></script>
+    <script type="text/javascript" src="<%=basePath%>js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>js/layer/layer.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>js/beinaili.js"></script>
   </body>
 </html>
